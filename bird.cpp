@@ -1,6 +1,8 @@
 #include "bird.h"
 
-Bird::Bird(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path,  b2World *world, QGraphicsScene *scene):GameItem(world)
+Bird::Bird(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path,  b2World *world, QGraphicsScene *scene) :
+    GameItem(world),
+    is_skill_used(false)
 {
 
     // Change unit fom qt to box2d
@@ -12,12 +14,10 @@ Bird::Bird(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path,
     float b_x =  qt_x * g_worldsize.width() / g_windowsize.width();
     float b_y = (1.0f - qt_y / g_windowsize.height())* g_worldsize.height() ;
 
-
     // Set pixmap
     g_pixmap.setPixmap(QPixmap(image_path).scaled(qt_radius * 2, qt_radius * 2));
     g_pixmap.setTransformationMode(Qt::SmoothTransformation);
     g_pixmap.setTransformOriginPoint(g_pixmap.boundingRect().width()/2,g_pixmap.boundingRect().height()/2);
-
 
     // Create Body
     b2BodyDef bodydef;
@@ -51,7 +51,6 @@ void Bird::setLinearVelocity(b2Vec2 velocity)
 
 void Bird::setLinearVelocity(int qt_x, int qt_y)
 {
-
     // give the range to set the pos x
      if (qt_x > 200)
         qt_x = 200;

@@ -21,7 +21,8 @@ public:
     void setLinearVelocity(int qt_x, int qt_y);
     void setPos(float x, float y);
     virtual void useSkill();
-
+protected:
+    bool is_skill_used;
 };
 
 #endif // BIRD_H

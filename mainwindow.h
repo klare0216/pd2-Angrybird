@@ -14,6 +14,7 @@
 #include <gameitem.h>
 #include <land.h>
 #include <birdyellow.h>
+#include <birdblue.h>
 #include <enemy.h>
 #include <barrier.h>
 #include <abcontactlistener.h>

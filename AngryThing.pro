@@ -20,8 +20,8 @@ SOURCES += main.cpp\
     enemy.cpp \
     barrier.cpp \
     abcontactlistener.cpp \
-    Box2D/birdyellow.cpp \
-    birdyellow.cpp
+    birdyellow.cpp \
+    birdblue.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -77,8 +77,8 @@ HEADERS  += mainwindow.h \
     enemy.h \
     barrier.h \
     abcontactlistener.h \
-    Box2D/birdyellow.h \
-    birdyellow.h
+    birdyellow.h \
+    birdblue.h
 
 FORMS    += mainwindow.ui
 

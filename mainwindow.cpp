@@ -42,22 +42,22 @@ void MainWindow::showEvent(QShowEvent *)
     itemList.push_back(new Enemy(550, 390, 23, &timer, ":/image/pig.png", world, scene));
     itemList.push_back(new Enemy(550, 310, 23, &timer, ":/image/pig.png", world, scene));
         // Create barrier
-    itemList.push_back(new Barrier(500, 390, 70, 30, 90.0f, &timer,":/image/barrier.png",world,scene));
-    itemList.push_back(new Barrier(600, 390, 70, 30, 90.0f,  &timer,":/image/barrier.png",world,scene));
-    itemList.push_back(new Barrier(550, 345, 150, 6, 0.0f, &timer,":/image/barrier.png",world,scene));
-    itemList.push_back(new Barrier(500, 310, 70, 30, 90.0f,  &timer,":/image/barrier.png",world,scene));
-    itemList.push_back(new Barrier(600, 310, 70, 30, 90.0f, &timer,":/image/barrier.png",world,scene));
-    itemList.push_back(new Barrier(550, 305, 150, 6, 0.0f, &timer,":/image/barrier.png",world,scene));
+    itemList.push_back(new Barrier(500, 390, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(600, 390, 70, 30, 90.0f,  &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(550, 345, 150, 6, 0.0f, &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(500, 310, 70, 30, 90.0f,  &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(600, 310, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(550, 305, 150, 6, 0.0f, &timer,":/image/barrier_wood.png",world,scene));
         // Create bird
     birdList.push_back(new BirdYellow(50, 460, 23, &timer, ":/bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 460, 23, &timer, ":/bird.png", world,scene));
+    birdList.push_back(new BirdYellow(50, 460, 23, &timer,  ":/image/uncle_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 460, 23, &timer, ":/bird.png", world,scene));
+    birdList.push_back(new BirdYellow(50, 460, 23, &timer,  ":/image/uncle_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 460, 23, &timer, ":/bird.png", world,scene));
+    birdList.push_back(new BirdYellow(50, 460, 23, &timer,  ":/image/uncle_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 460, 23, &timer, ":/bird.png", world,scene));
+    birdList.push_back(new BirdYellow(50, 460, 23, &timer, ":/image/uncle_bird.png", world,scene));
     ++bullet_num;
 
 
@@ -96,7 +96,6 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         /* TODO : add your code here */
         //std::cout << "Press !" << std::endl ;
         Bird * birdie = static_cast<Bird *>(birdList.last());
-        birdie->setAwake(false);
         if (!hasBird && bullet_num > 1 && isStart)
         {
             birdList.pop_back();
@@ -129,10 +128,10 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
 
         hasBird = (hasBird) ? false : true;
         isStart = true;
+        birdie->setAwake(!hasBird);
         if (hasBird)
         {
             birdie->setPos(200,300);
-            birdie->setAwake(false);
         } else {
             birdie->setLinearVelocity(e_mouse->pos().rx() , e_mouse->pos().ry());
         }

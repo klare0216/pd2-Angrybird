@@ -26,8 +26,11 @@ void GameItem::setGlobalSize(QSizeF worldsize, QSizeF windowsize)
 
 void GameItem::setAwake(bool flag)
 {
-    std::cout<< "call setAwake ( " << flag << ")" << std::endl;
+    std::cout<< "call setAwake ( " << g_body->GetGravityScale() << ")" << std::endl;
     g_body->SetAwake(flag);
+    if (!flag) g_body->SetGravityScale(0);
+    else g_body->SetGravityScale(1);
+
 }
 
 void GameItem::StartContact()

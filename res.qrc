@@ -6,5 +6,7 @@
         <file>image/red_bird.png</file>
         <file>image/barrier.png</file>
         <file>image/pig.png</file>
+        <file>image/uncle_bird.png</file>
+        <file>image/barrier_wood.png</file>
     </qresource>
 </RCC>
