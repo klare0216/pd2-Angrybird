@@ -15,12 +15,15 @@
 #include <land.h>
 #include <birdyellow.h>
 #include <birdblue.h>
+#include <birdblack.h>
+#include <birdgreen.h>
+#include <birdwhite.h>
 #include <enemy.h>
 #include <barrier.h>
 #include <abcontactlistener.h>
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -54,8 +57,6 @@ private:
     bool hasBird;
     bool isStart;
     int bullet_num;
-
-
 };
 
 #endif // MAINWINDOW_H

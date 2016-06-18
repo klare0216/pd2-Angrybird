@@ -8,19 +8,13 @@ abContactListener::abContactListener()
 void abContactListener::BeginContact(b2Contact *contact)
 {
     void * body_A = contact->GetFixtureA()->GetBody()->GetUserData();
-     void * body_B = contact->GetFixtureB()->GetBody()->GetUserData();
-   //  std::cout << body_A << "," << body_B << std::endl;
+    void * body_B = contact->GetFixtureB()->GetBody()->GetUserData();
 
-     //std::cout << "collide! " << std::endl;
-    if (body_A)
+    if (body_A && body_B)
     {
-       static_cast<GameItem *>(body_A)->StartContact();
-        //std::cout << "A start contact! " << std::endl;
-    }
-    if (body_B)
-    {
-       static_cast<GameItem *>(body_B)->StartContact();
-      //  std::cout << "B start contact! " << std::endl;
+        //std::cout << body_A << "," << body_B << std::endl;
+       static_cast<GameItem *>(body_A)->StartContact(static_cast<GameItem *>(body_B));
+       static_cast<GameItem *>(body_B)->StartContact(static_cast<GameItem *>(body_A));
     }
 }
 

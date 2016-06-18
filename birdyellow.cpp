@@ -17,3 +17,8 @@ void BirdYellow::useSkill()
     }
 
 }
+
+int BirdYellow::type()
+{
+    return type_birdyellow;
+}

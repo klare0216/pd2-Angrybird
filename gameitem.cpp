@@ -12,6 +12,12 @@ GameItem::GameItem(b2World *world):
 GameItem::~GameItem()
 {
     std::cout << "delete !" << std::endl;
+    while(itemList.length() != 0)
+    {
+        GameItem * tmp = itemList.last();
+        itemList.pop_back();
+        delete tmp;
+    }
     g_world->DestroyBody(g_body);
 }
 
@@ -26,21 +32,52 @@ void GameItem::setGlobalSize(QSizeF worldsize, QSizeF windowsize)
 
 void GameItem::setAwake(bool flag)
 {
-    std::cout<< "call setAwake ( " << g_body->GetGravityScale() << ")" << std::endl;
+    //std::cout<< "call setAwake ( " << g_body->GetGravityScale() << ")" << std::endl;
     g_body->SetAwake(flag);
     if (!flag) g_body->SetGravityScale(0);
     else g_body->SetGravityScale(1);
-
 }
 
-void GameItem::StartContact()
+void GameItem::setShow(bool flag)
+{
+    if (flag)
+    {
+        setQtPosition(g_qtpos.x,g_qtpos.y);
+        setAwake(true);
+    } else {
+        setQtPosition(-500,-500);
+        setAwake(false);
+    }
+}
+
+void GameItem::setQtPosition(int qt_x, int qt_y)
+{
+    g_qtpos.x = qt_x;
+    g_qtpos.y = qt_y;
+    float b_x = qt_x * g_worldsize.width() / g_windowsize.width();
+    float b_y = (1.0f - qt_y / g_windowsize.height())* g_worldsize.height() ;
+    g_body->SetTransform(b2Vec2(b_x, b_y),g_body->GetAngle());
+}
+
+void GameItem::StartContact(GameItem *)
 {
     ++ contact_num;
+    std::cout << "gameitem contact!" << std::endl;
 }
 
 void GameItem::EndContact()
 {
     -- contact_num;
+}
+
+int GameItem::QtX(float b_x)
+{
+    return (b_x* g_windowsize.width())/g_worldsize.width();
+}
+
+int GameItem::QtY(float b_y)
+{
+    return (1.0f - b_y/g_worldsize.height()) * g_windowsize.height();
 }
 
 void GameItem::deBug()
@@ -52,11 +89,15 @@ void GameItem::deBug()
 void GameItem::paint()
 {
     b2Vec2 pos = g_body->GetPosition();
-    //std::cout << "pos: " << pos.x << " , " << pos.y << std::endl;
-    //std::cout << g_body->GetAngle() << std::endl;
     QPointF mappedPoint;
     mappedPoint.setX(((pos.x-g_size.x/2) * g_windowsize.width())/g_worldsize.width());
     mappedPoint.setY((1.0f - (pos.y + g_size.y/2)/g_worldsize.height()) * g_windowsize.height());
+
+    //set qtpos
+    g_qtpos.x = mappedPoint.rx();
+    g_qtpos.y = mappedPoint.ry();
+
+    // set g_pixmap
     g_pixmap.setPos(mappedPoint);
     g_pixmap.resetTransform();
     g_pixmap.setRotation(-(g_body->GetAngle()*180/3.14159));
@@ -65,4 +106,3 @@ void GameItem::paint()
 void GameItem::collide()
 {
 }
-

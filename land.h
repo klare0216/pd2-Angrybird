@@ -8,6 +8,7 @@ class Land : public GameItem
 {
 public:
     Land(int x, int y, int w, int h, QString image_path, b2World *world, QGraphicsScene *scene);
+    virtual int type();
 };
 
 #endif // LAND_H

@@ -19,8 +19,9 @@ public:
     Bird(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path, b2World *world, QGraphicsScene *scene);
     void setLinearVelocity(b2Vec2 velocity);
     void setLinearVelocity(int qt_x, int qt_y);
-    void setPos(float x, float y);
+    void setPos(float qt_x, float qt_y);
     virtual void useSkill();
+    virtual int type();
 protected:
     bool is_skill_used;
 };

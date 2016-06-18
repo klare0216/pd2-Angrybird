@@ -24,9 +24,20 @@ Land::Land(int qt_x, int qt_y, int qt_w, int qt_h, QString image_path, b2World *
     g_body = world->CreateBody(&bodyDef);
     b2PolygonShape bodyBox;
     bodyBox.SetAsBox(b_w/2, b_h/2);
-    g_body->CreateFixture(&bodyBox,9.0f);
+    b2FixtureDef fixturedef;
+    fixturedef.shape = &bodyBox;
+    fixturedef.density = 9.0f;
+    // Set collide filter
+        fixturedef.filter.categoryBits = LAND;
+        fixturedef.filter.maskBits = DEFAULT | BIRD | ENEMY | BARRIER | EGG | LAND;
+    g_body->CreateFixture(&fixturedef);
 
 
     scene->addItem(&g_pixmap);
     paint();
+}
+
+int Land::type()
+{
+    return type_land;
 }

@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     gameitem.cpp \
     bird.cpp \
     land.cpp \
@@ -21,9 +20,14 @@ SOURCES += main.cpp\
     barrier.cpp \
     abcontactlistener.cpp \
     birdyellow.cpp \
-    birdblue.cpp
+    birdblue.cpp \
+    birdblack.cpp \
+    birdgreen.cpp \
+    birdwhite.cpp \
+    egg.cpp \
+    mainwindow.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     Box2D/Collision/Shapes/b2ChainShape.h \
     Box2D/Collision/Shapes/b2CircleShape.h \
     Box2D/Collision/Shapes/b2EdgeShape.h \
@@ -78,9 +82,15 @@ HEADERS  += mainwindow.h \
     barrier.h \
     abcontactlistener.h \
     birdyellow.h \
-    birdblue.h
+    birdblue.h \
+    birdblack.h \
+    birdgreen.h \
+    birdwhite.h \
+    egg.h \
+    mainwindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    mainwindow.ui
 
 LIBS += -L. -lBox2D
 

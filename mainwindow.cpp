@@ -22,6 +22,7 @@ MainWindow::~MainWindow()
 void MainWindow::showEvent(QShowEvent *)
 {
     // Setting the QGraphicsScene
+    std::cout << width() << " , " << height() << std::endl;
     scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
     ui->graphicsView->setScene(scene);
 
@@ -36,8 +37,10 @@ void MainWindow::showEvent(QShowEvent *)
     GameItem::setGlobalSize(QSizeF(32, 18),size());
 
     // Create GameItem
-        // Create ground (You can edit here)
-    itemList.push_back(new Land(width() / 2, 425 + width() / 2 / 2, width(), width() / 2,":/ground.png",world,scene));
+        // Create ground
+    itemList.push_back(new Land(width() / 2, 600 + width() / 2 / 2, width(), width() / 2,":/ground.png",world,scene));
+    itemList.push_back(new Land(50, 250, 100, 10,":/image/none.png",world,scene));
+    itemList.push_back(new Land(105, 150, 10, 200,":/image/none.png",world,scene));
         //Create pig
     itemList.push_back(new Enemy(550, 390, 23, &timer, ":/image/pig.png", world, scene));
     itemList.push_back(new Enemy(550, 310, 23, &timer, ":/image/pig.png", world, scene));
@@ -49,17 +52,20 @@ void MainWindow::showEvent(QShowEvent *)
     itemList.push_back(new Barrier(600, 310, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
     itemList.push_back(new Barrier(550, 305, 150, 6, 0.0f, &timer,":/image/barrier_wood.png",world,scene));
         // Create bird
-    birdList.push_back(new BirdYellow(50, 460, 23, &timer, ":/bird.png", world,scene));
+    birdList.push_back(new BirdYellow(50, 190, 23, &timer, ":/bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 460, 23, &timer,  ":/image/uncle_bird.png", world,scene));
+    birdList.push_back(new BirdYellow(50, 150, 23, &timer,  ":/image/uncle_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 460, 23, &timer,  ":/image/uncle_bird.png", world,scene));
+    birdList.push_back(new BirdYellow(50, 110, 23, &timer,  ":/image/uncle_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 460, 23, &timer,  ":/image/uncle_bird.png", world,scene));
+    birdList.push_back(new BirdWhite(50, 70, 23, &timer,  ":/image/uncle_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 460, 23, &timer, ":/image/uncle_bird.png", world,scene));
+    birdList.push_back(new BirdWhite(50, 30, 23, &timer, ":/image/87_bird.png", world,scene));
     ++bullet_num;
-
+    birdList.push_back(new BirdWhite(50, 20, 23, &timer, ":/image/87_bird.png", world,scene));
+    ++bullet_num;
+    birdList.push_back(new BirdWhite(50, 20, 23, &timer, ":/image/87_bird.png", world,scene));
+    ++bullet_num;
 
     // Timer
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
@@ -137,7 +143,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         }
 
         //std::cout << birdie << std::endl;
-        birdie->deBug();
+        //birdie->deBug();
         //std::cout << "Release !" << std::endl ;
         //std::cout << e_mouse->pos().ry() << std::endl;
         return true;

@@ -16,7 +16,8 @@ class Enemy : public GameItem
 {
 public:
     Enemy(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path, b2World *world, QGraphicsScene *scene);
-    virtual void StartContact();
+    virtual void StartContact(GameItem*);
+    virtual int type();
 public slots:
     virtual void collide();
 

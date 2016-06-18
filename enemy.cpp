@@ -30,6 +30,9 @@ Enemy::Enemy(int qt_x, int qt_y, int q_radius, QTimer *timer, QString image_path
     fixturedef.density = ENEMY_DENSITY;
     fixturedef.friction = ENEMY_FRICTION;
     fixturedef.restitution = ENEMY_RESTITUTION;
+    // Set collide filter
+        fixturedef.filter.categoryBits = ENEMY;
+        fixturedef.filter.maskBits = DEFAULT | BIRD | ENEMY | BARRIER | EGG | LAND;
     g_body->SetAngularDamping(3);
     g_body->CreateFixture(&fixturedef);
     g_body->SetSleepingAllowed(true);
@@ -41,8 +44,9 @@ Enemy::Enemy(int qt_x, int qt_y, int q_radius, QTimer *timer, QString image_path
     scene->addItem(&g_pixmap);
 }
 
-void Enemy::StartContact()
+void Enemy::StartContact(GameItem *)
 {
+    std::cout << "enemy contact!" << std::endl;
     ++contact_num;
     if (contact_num == 2)
     {
@@ -50,10 +54,14 @@ void Enemy::StartContact()
     }
 }
 
+int Enemy::type()
+{
+    return type_enemy;
+}
+
 
 void Enemy::collide()
 {
     std::cout << "enemy collide! "<< std::endl;
     //destroy = 1;
-
 }

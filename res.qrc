@@ -8,5 +8,8 @@
         <file>image/pig.png</file>
         <file>image/uncle_bird.png</file>
         <file>image/barrier_wood.png</file>
+        <file>image/none.png</file>
+        <file>image/87_bird.png</file>
+        <file>image/egg.png</file>
     </qresource>
 </RCC>

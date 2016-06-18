@@ -35,6 +35,9 @@ Barrier::Barrier(int qt_x, int qt_y, int qt_w, int qt_h, float angle, QTimer *ti
     fixturedef.density =  BERRIER_DENSITY;
     fixturedef.friction =  BERRIER_FRICTION;
     fixturedef.restitution =  BERRIER_RESTITUTION;
+        // Set collide filter
+    fixturedef.filter.categoryBits = BARRIER;
+    fixturedef.filter.maskBits = DEFAULT | BIRD | ENEMY | BARRIER | LAND;
     g_body->SetAngularDamping(3);
     g_body->CreateFixture(&fixturedef);
     g_body->SetTransform(g_body->GetPosition(), rad);
@@ -44,4 +47,14 @@ Barrier::Barrier(int qt_x, int qt_y, int qt_w, int qt_h, float angle, QTimer *ti
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
 
     scene->addItem(&g_pixmap);
+}
+
+int Barrier::type()
+{
+    return type_barrier;
+}
+
+void Barrier::StartContact(GameItem *)
+{
+    ++contact_num;
 }
