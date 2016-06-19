@@ -17,7 +17,9 @@ void BirdBlue::useSkill()
         int qt_x = GameItem::QtX(g_body->GetPosition().x);
         int qt_y = GameItem::QtY(g_body->GetPosition().y);
         itemList[0]->setQtPosition(qt_x, qt_y);
-        itemList[1]->setQtPosition(qt_x, qt_y);
+        itemList[1]->setQtPosition(qt_x,qt_y);
+        static_cast<Bird *>(itemList[0])->setLinearVelocity(0.5,0.5);
+        static_cast<Bird *>(itemList[1])->setLinearVelocity(-0.5,0.5);
         itemList[0]->setShow(true);
         itemList[1]->setShow(true);
          is_skill_used = true;

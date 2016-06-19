@@ -643,15 +643,19 @@ qrc_res.cpp: res.qrc \
 		image/redBird.png \
 		image/cloud_4.png \
 		image/none.png \
+		image/R_press.png \
 		image/uncle_land.png \
 		image/87_bird.png \
+		image/R.png \
 		image/uncle_bird.png \
 		image/sky.png \
+		image/esc.png \
 		image/pig.png \
 		image/egg.png \
 		image/barrier.png \
 		image/black_bird.png \
-		image/barrier_l.png
+		image/barrier_l.png \
+		image/esc_press.png
 	/home/kh/Qt5.6.0/5.6/gcc_64/bin/rcc -name res res.qrc -o qrc_res.cpp
 
 compiler_moc_header_make_all: moc_gameitem.cpp moc_mainwindow.cpp moc_background.cpp
@@ -973,6 +977,10 @@ moc_mainwindow.cpp: ../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		barrier.h \
 		abcontactlistener.h \
 		background.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsTextItem \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QPushButton \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractbutton.h \
 		mainwindow.h
 	/home/kh/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/home/kh/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I/home/kh/Coding/pd2-Angrybird -I/home/kh/Qt5.6.0/5.6/gcc_64/include -I/home/kh/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/home/kh/Qt5.6.0/5.6/gcc_64/include/QtGui -I/home/kh/Qt5.6.0/5.6/gcc_64/include/QtCore mainwindow.h -o moc_mainwindow.cpp
 
@@ -1065,16 +1073,36 @@ moc_background.cpp: ../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsPixmapIt
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qimage.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qpixelformat.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qtransform.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsTextItem \
 		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
 		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qbrush.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfont.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qpen.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QPushButton \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qicon.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qpalette.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qcursor.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qevent.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qurl.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qurlquery.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qfile.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qvector2d.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/QPainter \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qpainter.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qtextoption.h \
-		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfontinfo.h \
-		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/QTimer \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qtimer.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qbasictimer.h \
 		background.h
 	/home/kh/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/home/kh/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I/home/kh/Coding/pd2-Angrybird -I/home/kh/Qt5.6.0/5.6/gcc_64/include -I/home/kh/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/home/kh/Qt5.6.0/5.6/gcc_64/include/QtGui -I/home/kh/Qt5.6.0/5.6/gcc_64/include/QtCore background.h -o moc_background.cpp
 
@@ -1273,6 +1301,10 @@ main.o: main.cpp mainwindow.h \
 		barrier.h \
 		abcontactlistener.h \
 		background.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsTextItem \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QPushButton \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
 		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
@@ -3211,7 +3243,49 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		barrier.h \
 		abcontactlistener.h \
 		background.h \
-		ui_mainwindow.h
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsTextItem \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QPushButton \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractbutton.h \
+		ui_mainwindow.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/QVariant \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QAction \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qaction.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QButtonGroup \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsView \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qlayout.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QHeaderView \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qheaderview.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 background.o: background.cpp background.h \
@@ -3304,16 +3378,36 @@ background.o: background.cpp background.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qimage.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qpixelformat.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qtransform.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsTextItem \
 		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
 		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qbrush.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfont.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qpen.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/QPushButton \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qicon.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qpalette.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qcursor.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qevent.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qurl.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qurlquery.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qfile.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qvector2d.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/QPainter \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qpainter.h \
 		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qtextoption.h \
-		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfontinfo.h \
-		../../Qt5.6.0/5.6/gcc_64/include/QtGui/qfontmetrics.h
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/QTimer \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qtimer.h \
+		../../Qt5.6.0/5.6/gcc_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o background.o background.cpp
 
 qrc_res.o: qrc_res.cpp 

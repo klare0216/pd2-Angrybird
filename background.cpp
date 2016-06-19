@@ -21,21 +21,61 @@ BackGround::BackGround(QTimer *timer, QGraphicsScene *scene)
     aa_pixmap.setPos(QPointF(185,380));
     scene->addItem(&aa_pixmap);
 
-    // Set scoreBar
-    QString text;
-    text = "SCORE : 0";
-    QFont font;
-    font.setPixelSize(30);
-    font.setFamily("Courier");
-    scoreBar.setPos(1020,2);
-    scoreBar.setPlainText(text);
-    scoreBar.setFont(font);
+    esc_pixmap.setPixmap(QPixmap(":/image/esc.png"));
+    esc_pixmap.setTransformationMode(Qt::SmoothTransformation);
+    esc_pixmap.setPos(QPointF(100,5));
+    scene->addItem(&esc_pixmap);
 
-    scene->addItem(&scoreBar);
+    r_pixmap.setPixmap(QPixmap(":/image/R.png"));
+    r_pixmap.setTransformationMode(Qt::SmoothTransformation);
+    r_pixmap.setPos(QPointF(150,5));
+    scene->addItem(&r_pixmap);
+
+    // Set scoreBar
+    {
+        QString text;
+        text = "SCORE : 0";
+        QFont font;
+        font.setPixelSize(30);
+        font.setFamily("Courier");
+        scoreBar.setPos(1020,2);
+        scoreBar.setPlainText(text);
+        scoreBar.setFont(font);
+        scene->addItem(&scoreBar);
+    }
+
+    // Set Message
+    {
+        //QString text;
+        //text = "SCORE : 0";
+        QFont font;
+        font.setPixelSize(60);
+        font.setFamily("Courier");
+        message.setPos(800,300);
+        //message.setPlainText(text);
+        message.setFont(font);
+        scene->addItem(&message);
+    }
+
 
     // connect
     connect(timer, SIGNAL(timeout()), this, SLOT(Floating()));
 
+}
+
+void BackGround::rPress(bool flag)
+{
+       if (flag) r_pixmap.setPixmap(QPixmap(":/image/R_press.png"));
+       else r_pixmap.setPixmap(QPixmap(":/image/R.png"));
+       r_pixmap.resetTransform();
+        //scene->addItem(&r_pixmap);
+}
+
+void BackGround::escPress(bool flag)
+{
+    if (flag) esc_pixmap.setPixmap(QPixmap(":/image/esc_press.png"));
+    else esc_pixmap.setPixmap(QPixmap(":/image/esc.png"));
+    esc_pixmap.resetTransform();
 }
 
 void BackGround::Floating()
@@ -61,4 +101,33 @@ void BackGround::update()
     q_text = text;
 
     scoreBar.setPlainText(q_text);
+}
+
+void BackGround::win()
+{
+
+    std::stringstream ss;
+    QString q_text;
+    char text[100] ;
+    ss << "WIN  va_av"<< std::endl;
+    ss >> text;
+    q_text = text;
+    q_text += " ";
+    ss >> text;
+    q_text += text;
+    message.setPlainText(q_text);
+}
+
+void BackGround::gameover()
+{
+        std::stringstream ss;
+        QString q_text;
+        char text[100] ;
+        ss << "GG~  va_av"<< std::endl;
+        ss >> text;
+        q_text = text;
+        q_text += " ";
+        ss >> text;
+        q_text += text;
+        message.setPlainText(q_text);
 }

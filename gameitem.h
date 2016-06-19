@@ -40,8 +40,10 @@ public:
     // For DeBug
     void virtual deBug();
 
+
 public slots:
     void paint();
+    virtual void done();
 
 protected:
     // For Contact
@@ -51,6 +53,7 @@ protected:
     b2Vec2 g_qtpos;
     b2World *g_world;
     static QSizeF g_worldsize, g_windowsize;
+
 
     // For collide
     int contact_num;

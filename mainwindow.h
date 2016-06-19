@@ -45,11 +45,15 @@ signals:
     // Signal for closing the game
     void quitGame();
     void Restart();
+    void gameOver();
+    void win();
 
 
 private slots:
     void tick();
     void restart();
+    void GAMEOVER();
+    void WIN();
     // For debug slot
     void QUITSLOT();
 
@@ -61,16 +65,17 @@ private:
     QList<GameItem *> itemList;
     QList<GameItem *> birdList;
     QList<GameItem *> EnemyList;
-    QList<GameItem *> done_birdList;
     QTimer timer;
     abContactListener *contactListener;
     BackGround *background;
     int score;
 
     // For MouseEvent
+    Bird * focus_bird;
     bool hasBird;
     bool isStart;
     int bullet_num;
+
 
 };
 

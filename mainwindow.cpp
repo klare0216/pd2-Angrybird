@@ -91,13 +91,14 @@ void MainWindow::showEvent(QShowEvent *)
     connect(&timer,SIGNAL(timeout()),background,SLOT(update()));
     connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
     connect(this,SIGNAL(Restart()),this,SLOT(restart()));
+    connect(this,SIGNAL(gameOver()),this,SLOT(GAMEOVER()));
+    connect(this,SIGNAL(win()),this,SLOT(WIN()));
 
     timer.start(100/6);
 }
 
 bool MainWindow::eventFilter(QObject *, QEvent *event)
 {
-    // Hint: Notice the Number of every event!
     int type = event->type();
     Bird * birdie = NULL;
 
@@ -131,11 +132,21 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     if(event->type() == QEvent::MouseButtonPress)
     {
         //std::cout << "Press !" << std::endl ;
-        if (!hasBird && (!birdList.isEmpty()) && isStart)
+        QMouseEvent * e_mouse = static_cast<QMouseEvent *>(event);
+        int  e_x = e_mouse->pos().x();
+        int  e_y = e_mouse->pos().y();
+
+        if (e_x > 100 && e_x < 150 && e_y<50)
         {
+            background->escPress(true);
+        } else if(e_x > 150 && e_x < 200 && e_y<50)
+        {
+            background->rPress(true);
+        } else if (!hasBird && (!birdList.isEmpty()) && isStart)
+        {
+            birdList.removeOne(birdie);
             Enemy::add_score = Enemy::add_score - 1;
         }
-
         return true;
     }
 
@@ -150,7 +161,19 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     if(event->type() == QEvent::MouseButtonRelease)
     {
         QMouseEvent * e_mouse = static_cast<QMouseEvent *>(event);
-        if (birdie != NULL)
+        int  e_x = e_mouse->pos().x();
+        int  e_y = e_mouse->pos().y();
+
+         background->rPress(false);
+        background->escPress(false);
+
+        if (e_x > 100 && e_x < 150 && e_y<50)
+        {
+            emit quitGame();
+        } else if(e_x > 150 && e_x < 200 && e_y<50)
+        {
+            emit restart();
+        } else if (birdie != NULL)
         {
             hasBird = (hasBird) ? false : true;
             isStart = true;
@@ -160,8 +183,9 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 birdie->setPos(200,375);
             } else {
                 birdie->setLinearVelocity(e_mouse->pos().rx() , e_mouse->pos().ry());
-                done_birdList.push_back(birdie);
-                birdList.pop_back();
+                birdie->setIsDone(true);
+                if (birdList.length() == 1)
+                    emit gameOver();
             }
         }
         return true;
@@ -180,19 +204,12 @@ void MainWindow::tick()
 {
     world->Step(1.0/60.0,6,2);
     scene->update();
-    birdList[0]->deBug();
     if (EnemyList.isEmpty())
-        emit quitGame();
-
-    while (!done_birdList.isEmpty())
     {
-        GameItem *tmp = done_birdList.last();
-        if ( tmp->isStop())
-        {
-            done_birdList.removeOne(tmp);
-            tmp->deleteLater();
-        }
+        emit win();
     }
+    if (birdList.isEmpty())
+        emit gameOver();
 
 }
 
@@ -200,6 +217,18 @@ void MainWindow::restart()
 {
     std::cout << "Performing application reboot..." << std::endl ;
     qApp->exit( MainWindow::EXIT_CODE_REBOOT );
+}
+
+void MainWindow::GAMEOVER()
+{
+        std::cout << "gameover" << std::endl;
+         background->gameover();
+}
+
+void MainWindow::WIN()
+{
+         std::cout << "win" << std::endl ;
+         background->win();
 }
 
 void MainWindow::QUITSLOT()

@@ -2,7 +2,9 @@
 
 Bird::Bird(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path,  b2World *world, QGraphicsScene *scene) :
     GameItem(world),
-    is_skill_used(false)
+    is_skill_used(false),
+    done_count(300),
+    isDone(false)
 {
 
 
@@ -44,8 +46,22 @@ Bird::Bird(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path,
 
     // Bound timer
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
+    connect(timer, SIGNAL(timeout()), this,SLOT(done()));
+
 
     scene->addItem(&g_pixmap);
+}
+
+Bird::~Bird()
+{
+    std::cout << "delete !" << std::endl;
+    while(itemList.length() != 0)
+    {
+        GameItem * tmp = itemList.last();
+        itemList.pop_back();
+        delete tmp;
+    }
+    g_world->DestroyBody(g_body);
 }
 
 void Bird::setLinearVelocity(b2Vec2 velocity)
@@ -103,5 +119,22 @@ void Bird::useSkill()
 int Bird::type()
 {
     return type_bird;
+}
+
+bool Bird::stop = false;
+
+void Bird::done()
+{
+    if (!stop && isDone)
+    {
+        --done_count;
+        if (done_count < 0)
+            deleteLater();
+    }
+}
+
+void Bird::setIsDone(bool value)
+{
+    isDone = value;
 }
 

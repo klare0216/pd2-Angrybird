@@ -43,10 +43,10 @@ void GameItem::setShow(bool flag)
     if (flag)
     {
         setQtPosition(g_qtpos.x,g_qtpos.y);
-        setAwake(true);
+        //setAwake(true);
     } else {
         setQtPosition(-500,-500);
-        setAwake(false);
+        //setAwake(false);
     }
 }
 
@@ -114,4 +114,9 @@ void GameItem::paint()
     g_pixmap.setPos(mappedPoint);
     g_pixmap.resetTransform();
     g_pixmap.setRotation(-(g_body->GetAngle()*180/3.14159));
+}
+
+void GameItem::done()
+{
+
 }

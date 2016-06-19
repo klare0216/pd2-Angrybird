@@ -26,5 +26,10 @@
         <file>image/cloud_2.png</file>
         <file>image/cloud_1.png</file>
         <file>image/cloud_0.png</file>
+        <file>image/未命名.png</file>
+        <file>image/R.png</file>
+        <file>image/esc.png</file>
+        <file>image/R_press.png</file>
+        <file>image/esc_press.png</file>
     </qresource>
 </RCC>

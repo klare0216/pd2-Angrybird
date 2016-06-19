@@ -10,7 +10,7 @@ void BirdGreen::useSkill()
     std::cout << "use green bird's skill!" << std::endl;
     if (!is_skill_used)
     {
-        b2Vec2 velocity(g_body->GetLinearVelocity().x * (- 1.5), g_body->GetLinearVelocity().y * (1));
+        b2Vec2 velocity(g_body->GetLinearVelocity().x * (0), -20);
         setLinearVelocity(velocity);
         is_skill_used = true;
     }
