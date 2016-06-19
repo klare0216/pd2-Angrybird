@@ -37,7 +37,9 @@ Egg::Egg(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path,  
     fixturedef.filter.maskBits = DEFAULT | ENEMY | EGG | LAND;
     g_body->SetAngularDamping(3);
     g_body->CreateFixture(&fixturedef);
-    //g_body->SetSleepingAllowed(true);
+    g_body->SetSleepingAllowed(true);
+    g_body->SetActive(false);
+
 
     // Bound timer
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
@@ -50,3 +52,7 @@ int Egg::type()
     return type_egg;
 }
 
+void Egg::setActive(bool flag)
+{
+    g_body->SetActive(flag);
+}

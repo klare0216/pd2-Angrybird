@@ -1,6 +1,7 @@
 #include "enemy.h"
 
-Enemy::Enemy(int qt_x, int qt_y, int q_radius, QTimer *timer, QString image_path, b2World *world, QGraphicsScene *scene) : GameItem(world)
+Enemy::Enemy(int qt_x, int qt_y, int q_radius, QTimer *timer, QString image_path, b2World *world, QGraphicsScene *scene) :
+    GameItem(world)
 {
      // Change unit fom qt to box2d
         // length
@@ -44,12 +45,30 @@ Enemy::Enemy(int qt_x, int qt_y, int q_radius, QTimer *timer, QString image_path
     scene->addItem(&g_pixmap);
 }
 
-void Enemy::StartContact(GameItem *)
+Enemy::~Enemy()
 {
-    std::cout << "enemy contact!" << std::endl;
-    ++contact_num;
-    if (contact_num == 2)
+    std::cout << "delete !" << std::endl;
+    while(itemList.length() != 0)
     {
+        GameItem * tmp = itemList.last();
+        itemList.pop_back();
+        delete tmp;
+    }
+    g_world->DestroyBody(g_body);
+    list_ptr->removeOne(this);
+}
+
+int * Enemy::e_score = NULL;
+int Enemy::add_score = 10;
+QList<GameItem *> * Enemy::list_ptr = NULL;
+
+void Enemy::StartContact(GameItem * body)
+{
+    ++contact_num;
+    if (contact_num == 2 || body->type() < 10)
+    {
+        *e_score = (*e_score + (add_score) * 100);
+          std::cout << "score: " << *e_score << std::endl;
         deleteLater();
     }
 }
@@ -59,9 +78,3 @@ int Enemy::type()
     return type_enemy;
 }
 
-
-void Enemy::collide()
-{
-    std::cout << "enemy collide! "<< std::endl;
-    //destroy = 1;
-}

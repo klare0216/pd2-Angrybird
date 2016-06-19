@@ -27,6 +27,8 @@ public:
     void setAwake(bool flag);
     void setShow(bool flag);
     void setQtPosition(int qt_x, int qt_y);
+    bool isStop();
+    b2Vec2 getB2Pos();
     virtual int type() = 0;
     virtual void StartContact(GameItem *);
     virtual void EndContact();
@@ -40,7 +42,6 @@ public:
 
 public slots:
     void paint();
-    virtual void collide();
 
 protected:
     // For Contact

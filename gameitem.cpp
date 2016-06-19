@@ -33,7 +33,7 @@ void GameItem::setGlobalSize(QSizeF worldsize, QSizeF windowsize)
 void GameItem::setAwake(bool flag)
 {
     //std::cout<< "call setAwake ( " << g_body->GetGravityScale() << ")" << std::endl;
-    g_body->SetAwake(flag);
+   // g_body->SetAwake(flag);
     if (!flag) g_body->SetGravityScale(0);
     else g_body->SetGravityScale(1);
 }
@@ -59,10 +59,23 @@ void GameItem::setQtPosition(int qt_x, int qt_y)
     g_body->SetTransform(b2Vec2(b_x, b_y),g_body->GetAngle());
 }
 
+bool GameItem::isStop()
+{
+   if (g_body->GetLinearVelocity() == b2Vec2(0,0))
+   {
+       return true;
+   }
+   return false;
+}
+
+b2Vec2 GameItem::getB2Pos()
+{
+    return g_body->GetPosition();
+}
+
 void GameItem::StartContact(GameItem *)
 {
     ++ contact_num;
-    std::cout << "gameitem contact!" << std::endl;
 }
 
 void GameItem::EndContact()
@@ -101,8 +114,4 @@ void GameItem::paint()
     g_pixmap.setPos(mappedPoint);
     g_pixmap.resetTransform();
     g_pixmap.setRotation(-(g_body->GetAngle()*180/3.14159));
-}
-
-void GameItem::collide()
-{
 }

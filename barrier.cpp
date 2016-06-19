@@ -1,6 +1,7 @@
 #include "barrier.h"
 
-Barrier::Barrier(int qt_x, int qt_y, int qt_w, int qt_h, float angle, QTimer *timer, QString image_path, b2World *world, QGraphicsScene *scene) : GameItem(world)
+Barrier::Barrier(int qt_x, int qt_y, int qt_w, int qt_h, float angle, QTimer *timer, QString image_path, b2World *world, QGraphicsScene *scene) :
+    GameItem(world)
 {
     // For debug
     // std::cout << "create barrier!" << std::endl;

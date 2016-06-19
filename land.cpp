@@ -1,6 +1,7 @@
 #include "land.h"
 
-Land::Land(int qt_x, int qt_y, int qt_w, int qt_h, QString image_path, b2World *world, QGraphicsScene *scene):GameItem(world)
+Land::Land(int qt_x, int qt_y, int qt_w, int qt_h, QString image_path, b2World *world, QGraphicsScene *scene):
+    GameItem(world)
 {
     // Change unit fom qt to box2d
         // length

@@ -16,10 +16,13 @@ class Enemy : public GameItem
 {
 public:
     Enemy(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path, b2World *world, QGraphicsScene *scene);
-    virtual void StartContact(GameItem*);
+    ~Enemy();
+    virtual void StartContact(GameItem*body);
     virtual int type();
-public slots:
-    virtual void collide();
+    static int *e_score;
+    static int add_score;
+    static  QList<GameItem *> *list_ptr;
+protected:
 
 };
 

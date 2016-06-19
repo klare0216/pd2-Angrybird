@@ -17,6 +17,8 @@ class Egg : public GameItem
 public:
     Egg(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path,  b2World *world, QGraphicsScene *scene);
     virtual int type();
+    void setActive(bool flag);
+
 };
 
 #endif // EGG_H

@@ -20,6 +20,19 @@ BackGround::BackGround(QTimer *timer, QGraphicsScene *scene)
     aa_pixmap.setTransformationMode(Qt::SmoothTransformation);
     aa_pixmap.setPos(QPointF(185,380));
     scene->addItem(&aa_pixmap);
+
+    // Set scoreBar
+    QString text;
+    text = "SCORE : 0";
+    QFont font;
+    font.setPixelSize(30);
+    font.setFamily("Courier");
+    scoreBar.setPos(1020,2);
+    scoreBar.setPlainText(text);
+    scoreBar.setFont(font);
+
+    scene->addItem(&scoreBar);
+
     // connect
     connect(timer, SIGNAL(timeout()), this, SLOT(Floating()));
 
@@ -34,4 +47,18 @@ void BackGround::Floating()
     //cloud[4]->setPos( (cloud[4]->x() > 1250) ?  -1250 : cloud[4]->x() + 1, cloud[0]->y());
     for (int i = 0;i < cloud.length() - 1; ++i)
         cloud[i]->resetTransform();
+}
+
+int *BackGround::bg_score = NULL;
+
+void BackGround::update()
+{
+    std::stringstream ss;
+    QString q_text;
+    char text[100] ;
+    ss << "SCORE:" << *bg_score << std::endl;
+    ss >> text;
+    q_text = text;
+
+    scoreBar.setPlainText(q_text);
 }

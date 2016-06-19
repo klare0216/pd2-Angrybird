@@ -20,15 +20,15 @@ void BirdWhite::useSkill()
     {
         int qt_x = QtX(g_body->GetPosition().x);
         int qt_y = QtY(g_body->GetPosition().y);
-        itemList[eggs_index]->setQtPosition(qt_x, qt_y);
+        itemList[eggs_index]->setQtPosition(qt_x, qt_y + 30);
         itemList[eggs_index]->setShow(true);
+        static_cast<Egg * >(itemList[eggs_index])->setActive(true);
         if (eggs_index > 0)
         {
             --eggs_index;
         }else {
             is_skill_used = true;
         }
-            //is_skill_used = true;
     }
 }
 
@@ -36,3 +36,4 @@ int BirdWhite::type()
 {
     return type_birdwhite;
 }
+

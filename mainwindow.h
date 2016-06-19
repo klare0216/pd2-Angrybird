@@ -10,6 +10,7 @@
 #include <QMouseEvent>
 #include <iostream>
 #include <typeinfo>
+#include <exception>
 
 #include <gameitem.h>
 #include <land.h>
@@ -22,6 +23,7 @@
 #include <barrier.h>
 #include <abcontactlistener.h>
 #include <background.h>
+
 
 namespace Ui {
     class MainWindow;
@@ -37,28 +39,39 @@ public:
     void showEvent(QShowEvent *);
     bool eventFilter(QObject *,QEvent *event);
     void closeEvent(QCloseEvent *);
+    static int const EXIT_CODE_REBOOT = -878787;
+
 signals:
     // Signal for closing the game
     void quitGame();
+    void Restart();
+
 
 private slots:
     void tick();
+    void restart();
     // For debug slot
     void QUITSLOT();
+
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     b2World *world;
     QList<GameItem *> itemList;
     QList<GameItem *> birdList;
+    QList<GameItem *> EnemyList;
+    QList<GameItem *> done_birdList;
     QTimer timer;
     abContactListener *contactListener;
     BackGround *background;
+    int score;
 
     // For MouseEvent
     bool hasBird;
     bool isStart;
     int bullet_num;
+
 };
 
 #endif // MAINWINDOW_H
