@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
 
     do {
      QApplication a(argc, argv);
+     Enemy::add_score = 10;
      MainWindow w;
      w.show();
      currentExitCode = a.exec();
