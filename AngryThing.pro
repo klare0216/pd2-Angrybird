@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     birdgreen.cpp \
     birdwhite.cpp \
     egg.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    background.cpp
 
 HEADERS  += \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -87,7 +88,8 @@ HEADERS  += \
     birdgreen.h \
     birdwhite.h \
     egg.h \
-    mainwindow.h
+    mainwindow.h \
+    background.h
 
 FORMS    += \
     mainwindow.ui

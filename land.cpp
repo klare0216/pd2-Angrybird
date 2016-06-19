@@ -27,6 +27,7 @@ Land::Land(int qt_x, int qt_y, int qt_w, int qt_h, QString image_path, b2World *
     b2FixtureDef fixturedef;
     fixturedef.shape = &bodyBox;
     fixturedef.density = 9.0f;
+    fixturedef.friction = 1.0f;
     // Set collide filter
         fixturedef.filter.categoryBits = LAND;
         fixturedef.filter.maskBits = DEFAULT | BIRD | ENEMY | BARRIER | EGG | LAND;

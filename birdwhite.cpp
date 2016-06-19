@@ -20,7 +20,7 @@ void BirdWhite::useSkill()
     {
         int qt_x = QtX(g_body->GetPosition().x);
         int qt_y = QtY(g_body->GetPosition().y);
-        itemList[eggs_index]->setQtPosition(qt_x, qt_y + 30);
+        itemList[eggs_index]->setQtPosition(qt_x, qt_y);
         itemList[eggs_index]->setShow(true);
         if (eggs_index > 0)
         {

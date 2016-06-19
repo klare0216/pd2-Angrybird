@@ -26,6 +26,9 @@ void MainWindow::showEvent(QShowEvent *)
     scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
     ui->graphicsView->setScene(scene);
 
+    // Set background
+    background = new BackGround(&timer, scene);
+
     // World
         // Create world
     world = new b2World(b2Vec2(0.0f, -9.8f));
@@ -38,33 +41,54 @@ void MainWindow::showEvent(QShowEvent *)
 
     // Create GameItem
         // Create ground
-    itemList.push_back(new Land(width() / 2, 600 + width() / 2 / 2, width(), width() / 2,":/ground.png",world,scene));
-    itemList.push_back(new Land(50, 250, 100, 10,":/image/none.png",world,scene));
-    itemList.push_back(new Land(105, 150, 10, 200,":/image/none.png",world,scene));
-        //Create pig
-    itemList.push_back(new Enemy(550, 390, 23, &timer, ":/image/pig.png", world, scene));
-    itemList.push_back(new Enemy(550, 310, 23, &timer, ":/image/pig.png", world, scene));
+    itemList.push_back(new Land(1250 / 2, 500 + 300 / 2,1250, 300,":/image/uncle_land.png",world,scene));
+    itemList.push_back(new Land(50, 290, 100, 10,":/image/none.png",world,scene));
+    itemList.push_back(new Land(105, 190, 10, 200,":/image/none.png",world,scene));
         // Create barrier
-    itemList.push_back(new Barrier(500, 390, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
-    itemList.push_back(new Barrier(600, 390, 70, 30, 90.0f,  &timer,":/image/barrier_wood.png",world,scene));
-    itemList.push_back(new Barrier(550, 345, 150, 6, 0.0f, &timer,":/image/barrier_wood.png",world,scene));
-    itemList.push_back(new Barrier(500, 310, 70, 30, 90.0f,  &timer,":/image/barrier_wood.png",world,scene));
-    itemList.push_back(new Barrier(600, 310, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
-    itemList.push_back(new Barrier(550, 305, 150, 6, 0.0f, &timer,":/image/barrier_wood.png",world,scene));
+    for (int i = 0;i < 5;++i)
+    {
+            itemList.push_back(new Barrier(700 + 100*i, 470, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
+    }
+    itemList.push_back(new Barrier(800, 345, 150, 6, 0.0f, &timer,":/image/barrier_l.png",world,scene));
+    itemList.push_back(new Barrier(1000, 345, 150, 6, 0.0f, &timer,":/image/barrier_l.png",world,scene));
+    itemList.push_back(new Barrier(1000, 300, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(1000, 250, 70, 30, 0.0f, &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(1000, 210, 70, 30, 0.0f, &timer,":/image/barrier_wood.png",world,scene));
+
+    itemList.push_back(new Barrier(400, 460, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(400, 390, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(400, 320, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
+
+    itemList.push_back(new Barrier(500, 483, 70, 30, 0.0f, &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(530, 431, 150, 6, 0.0f, &timer,":/image/barrier_l.png",world,scene));
+    itemList.push_back(new Barrier(500, 421, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
+    itemList.push_back(new Barrier(500, 352, 70, 30, 90.0f, &timer,":/image/barrier_wood.png",world,scene));
+
+
+
+        //Create pig
+    itemList.push_back(new Enemy(550, 425, 23, &timer, ":/image/pig.png", world, scene));
+    itemList.push_back(new Enemy(400, 290, 23, &timer, ":/image/pig.png", world, scene));
+    for(int i = 0 ;i < 4;++i)
+    {
+       itemList.push_back(new Enemy(750 + 100*i, 523, 23, &timer, ":/image/pig.png", world, scene));
+    }
+    itemList.push_back(new Enemy(800, 320, 23, &timer, ":/image/pig.png", world, scene));
+
+    //itemList.push_back(new Enemy(573, 395, 23, &timer, ":/image/pig.png", world, scene));
+   // itemList.push_back(new Enemy(550, 310, 23, &timer, ":/image/pig.png", world, scene));
         // Create bird
-    birdList.push_back(new BirdYellow(50, 190, 23, &timer, ":/bird.png", world,scene));
+    birdList.push_back(new BirdWhite(50, 190, 23, &timer, ":/image/white_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 150, 23, &timer,  ":/image/uncle_bird.png", world,scene));
+    birdList.push_back(new BirdBlack(50, 110, 23, &timer,  ":/image/black_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdYellow(50, 110, 23, &timer,  ":/image/uncle_bird.png", world,scene));
+    birdList.push_back(new BirdBlue(50, 70, 23, &timer,  ":/image/blue_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdWhite(50, 70, 23, &timer,  ":/image/uncle_bird.png", world,scene));
+    birdList.push_back(new BirdGreen(50, 30, 23, &timer, ":/image/green_bird.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdWhite(50, 30, 23, &timer, ":/image/87_bird.png", world,scene));
+    birdList.push_back(new BirdYellow(50, 20, 23, &timer, ":/image/yellow_bird_2.png", world,scene));
     ++bullet_num;
-    birdList.push_back(new BirdWhite(50, 20, 23, &timer, ":/image/87_bird.png", world,scene));
-    ++bullet_num;
-    birdList.push_back(new BirdWhite(50, 20, 23, &timer, ":/image/87_bird.png", world,scene));
+    birdList.push_back(new Bird(50, 20, 23, &timer, ":/image/red_bird.png", world,scene));
     ++bullet_num;
 
     // Timer
@@ -137,7 +161,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         birdie->setAwake(!hasBird);
         if (hasBird)
         {
-            birdie->setPos(200,300);
+            birdie->setPos(200,375);
         } else {
             birdie->setLinearVelocity(e_mouse->pos().rx() , e_mouse->pos().ry());
         }

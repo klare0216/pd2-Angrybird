@@ -11,5 +11,20 @@
         <file>image/none.png</file>
         <file>image/87_bird.png</file>
         <file>image/egg.png</file>
+        <file>image/yellow_bird.png</file>
+        <file>image/blue_bird.png</file>
+        <file>image/yellow_bird_2.png</file>
+        <file>image/white_bird.png</file>
+        <file>image/green_bird.png</file>
+        <file>image/black_bird.png</file>
+        <file>image/uncle_land.png</file>
+        <file>image/barrier_l.png</file>
+        <file>image/aa.png</file>
+        <file>image/sky.png</file>
+        <file>image/cloud_4.png</file>
+        <file>image/cloud_3.png</file>
+        <file>image/cloud_2.png</file>
+        <file>image/cloud_1.png</file>
+        <file>image/cloud_0.png</file>
     </qresource>
 </RCC>

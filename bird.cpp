@@ -5,6 +5,7 @@ Bird::Bird(int qt_x, int qt_y, int qt_radius, QTimer *timer, QString image_path,
     is_skill_used(false)
 {
 
+
     // Change unit fom qt to box2d
         // length
     float b_radius = qt_radius / g_windowsize.width() * g_worldsize.width();
@@ -57,20 +58,20 @@ void Bird::setLinearVelocity(int qt_x, int qt_y)
     // give the range to set the pos x
      if (qt_x > 200)
         qt_x = 200;
-     else if (qt_x < 100)
-        qt_x =100;
+     else if (qt_x < 50)
+        qt_x =50;
     // give the range to set the pos y
-     if (qt_y > 680)
-        qt_y = 580;
-    else if (qt_y < 500)
-        qt_y =500;
-     // change qt pos to box2d pos
-    float x = (200 - qt_x)* g_worldsize.width() / g_windowsize.width() + g_size.x/2.0f;
-    float y = (1.0f - qt_y / g_windowsize.height())* g_worldsize.height() - g_size.y/2.0f;
-    y =  ((1.0f - 500 / g_windowsize.height())* g_worldsize.height() - g_size.y/2.0f ) - y;
-    //std::cout << " (x , y) = (" <<  x <<","<< y << ")" << std::endl;
+     if (qt_y > 450)
+        qt_y = 450;
+    else if (qt_y < 320)
+        qt_y = 320;
+    // change qt pos to box2d pos
+    float x = (200 - qt_x)* g_worldsize.width() / g_windowsize.width();
+    float y = ((- 375 + (qt_y))/ g_windowsize.height())* g_worldsize.height();
+    std::cout << "qt (x , y) = (" <<  qt_x <<","<< qt_y << ")" << std::endl;
+    std::cout << " (x , y) = (" <<  x <<","<< y << ")" << std::endl;
     // set linear velocity
-    b2Vec2 velocity(x * 5, y * 5);
+    b2Vec2 velocity(x * 5, y * 10);
     g_body->SetLinearVelocity(velocity);
 }
 
@@ -80,13 +81,13 @@ void Bird::setPos(float qt_x, float qt_y)
     // give the range to set the pos x
      if (qt_x > 200)
         qt_x = 200;
-     else if (qt_x < 100)
-        qt_x =100;
+     else if (qt_x < 50)
+        qt_x =50;
     // give the range to set the pos y
-     if (qt_y > 580)
-        qt_y = 580;
-    else if (qt_y < 500)
-        qt_y =500;
+     if (qt_y > 450)
+        qt_y = 450;
+    else if (qt_y < 320)
+        qt_y = 320;
    // change the qt pos to box2d pos
    pos.x =  qt_x * g_worldsize.width() / g_windowsize.width();
    pos.y = (1.0f - qt_y / g_windowsize.height())* g_worldsize.height();

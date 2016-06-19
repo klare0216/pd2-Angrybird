@@ -21,6 +21,7 @@
 #include <enemy.h>
 #include <barrier.h>
 #include <abcontactlistener.h>
+#include <background.h>
 
 namespace Ui {
     class MainWindow;
@@ -52,6 +53,7 @@ private:
     QList<GameItem *> birdList;
     QTimer timer;
     abContactListener *contactListener;
+    BackGround *background;
 
     // For MouseEvent
     bool hasBird;

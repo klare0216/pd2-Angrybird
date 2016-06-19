@@ -8,7 +8,7 @@
 #include <iostream>
 
 
-#define BERRIER_DENSITY 87.0f
+#define BERRIER_DENSITY 43.0f
 #define  BERRIER_FRICTION 0.2f
 #define  BERRIER_RESTITUTION 0.5f
 
